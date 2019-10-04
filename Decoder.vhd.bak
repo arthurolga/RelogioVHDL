@@ -1,0 +1,38 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+
+entity Decoder is port
+	(
+		inO	:	in std_logic_vector(7 downto 0);
+		outO		:	out std_logic
+	);
+
+end Decoder;
+
+architecture decode of Decoder is
+
+signal x_display, x_buttons, x_timebase : std_logic;
+
+begin
+process(inO)
+begin
+
+	x_display <= NOT inO(7 downto 5);
+	
+	x_buttons <= ((NOT inO(7 downto 6))AND(NOT inO(4))AND(inO(5)));
+	
+	x_timebase <= ((NOT inO(7))AND(inO(6))AND(inO(5 downto 4))) OR ((NOT inO(7 downto 6)) AND (inO(5 downto 4)));
+	
+	
+	if ((x_display == '1')OR(x_buttons == '1')OR(x_timebase == '1')) then
+		outO <= '1';
+	else
+		outO <= '0';
+	end if;
+end process;
+
+end architecture;
+	
+	

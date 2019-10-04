@@ -1,0 +1,204 @@
+$comment
+	File created using the following command:
+		vcd file Relogio.msim.vcd -direction
+$end
+$date
+	Fri Sep 27 10:47:41 2019
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module ula_vhd_vec_tst $end
+$var wire 1 ! inA [3] $end
+$var wire 1 " inA [2] $end
+$var wire 1 # inA [1] $end
+$var wire 1 $ inA [0] $end
+$var wire 1 % inB [3] $end
+$var wire 1 & inB [2] $end
+$var wire 1 ' inB [1] $end
+$var wire 1 ( inB [0] $end
+$var wire 1 ) outO [3] $end
+$var wire 1 * outO [2] $end
+$var wire 1 + outO [1] $end
+$var wire 1 , outO [0] $end
+$var wire 1 - sel [2] $end
+$var wire 1 . sel [1] $end
+$var wire 1 / sel [0] $end
+
+$scope module i1 $end
+$var wire 1 0 gnd $end
+$var wire 1 1 vcc $end
+$var wire 1 2 unknown $end
+$var wire 1 3 devoe $end
+$var wire 1 4 devclrn $end
+$var wire 1 5 devpor $end
+$var wire 1 6 ww_devoe $end
+$var wire 1 7 ww_devclrn $end
+$var wire 1 8 ww_devpor $end
+$var wire 1 9 ww_inA [3] $end
+$var wire 1 : ww_inA [2] $end
+$var wire 1 ; ww_inA [1] $end
+$var wire 1 < ww_inA [0] $end
+$var wire 1 = ww_inB [3] $end
+$var wire 1 > ww_inB [2] $end
+$var wire 1 ? ww_inB [1] $end
+$var wire 1 @ ww_inB [0] $end
+$var wire 1 A ww_outO [3] $end
+$var wire 1 B ww_outO [2] $end
+$var wire 1 C ww_outO [1] $end
+$var wire 1 D ww_outO [0] $end
+$var wire 1 E ww_sel [2] $end
+$var wire 1 F ww_sel [1] $end
+$var wire 1 G ww_sel [0] $end
+$var wire 1 H \Mux4~0clkctrl_INCLK_bus\ [3] $end
+$var wire 1 I \Mux4~0clkctrl_INCLK_bus\ [2] $end
+$var wire 1 J \Mux4~0clkctrl_INCLK_bus\ [1] $end
+$var wire 1 K \Mux4~0clkctrl_INCLK_bus\ [0] $end
+$var wire 1 L \outO[0]~output_o\ $end
+$var wire 1 M \outO[1]~output_o\ $end
+$var wire 1 N \outO[2]~output_o\ $end
+$var wire 1 O \outO[3]~output_o\ $end
+$var wire 1 P \sel[2]~input_o\ $end
+$var wire 1 Q \inA[0]~input_o\ $end
+$var wire 1 R \sel[0]~input_o\ $end
+$var wire 1 S \Mux0~2_combout\ $end
+$var wire 1 T \sel[1]~input_o\ $end
+$var wire 1 U \inB[0]~input_o\ $end
+$var wire 1 V \Add0~0_combout\ $end
+$var wire 1 W \Mux0~0_combout\ $end
+$var wire 1 X \Mux0~1_combout\ $end
+$var wire 1 Y \inB[1]~input_o\ $end
+$var wire 1 Z \inA[1]~input_o\ $end
+$var wire 1 [ \Mux0~3_combout\ $end
+$var wire 1 \ \inB[2]~input_o\ $end
+$var wire 1 ] \inB[3]~input_o\ $end
+$var wire 1 ^ \inA[2]~input_o\ $end
+$var wire 1 _ \inA[3]~input_o\ $end
+$var wire 1 ` \Mux0~4_combout\ $end
+$var wire 1 a \Mux0~5_combout\ $end
+$var wire 1 b \Mux0~6_combout\ $end
+$var wire 1 c \Mux4~0_combout\ $end
+$var wire 1 d \Mux4~0clkctrl_outclk\ $end
+$var wire 1 e \outO[0]$latch~combout\ $end
+$var wire 1 f \Mux1~2_combout\ $end
+$var wire 1 g \Add0~1\ $end
+$var wire 1 h \Add0~2_combout\ $end
+$var wire 1 i \Mux1~0_combout\ $end
+$var wire 1 j \Mux1~1_combout\ $end
+$var wire 1 k \Mux1~3_combout\ $end
+$var wire 1 l \outO[1]$latch~combout\ $end
+$var wire 1 m \Mux2~2_combout\ $end
+$var wire 1 n \Add0~3\ $end
+$var wire 1 o \Add0~4_combout\ $end
+$var wire 1 p \Mux2~0_combout\ $end
+$var wire 1 q \Mux2~1_combout\ $end
+$var wire 1 r \Mux2~3_combout\ $end
+$var wire 1 s \outO[2]$latch~combout\ $end
+$var wire 1 t \Add0~5\ $end
+$var wire 1 u \Add0~6_combout\ $end
+$var wire 1 v \Mux3~0_combout\ $end
+$var wire 1 w \Mux3~1_combout\ $end
+$var wire 1 x \Mux3~2_combout\ $end
+$var wire 1 y \Mux3~3_combout\ $end
+$var wire 1 z \outO[3]$latch~combout\ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+00
+11
+x2
+13
+14
+15
+16
+17
+18
+0L
+0M
+0N
+0O
+1P
+0Q
+1R
+0S
+0T
+1U
+1V
+0W
+0X
+0Y
+1Z
+0[
+0\
+0]
+0^
+0_
+1`
+0a
+0b
+0c
+0d
+0e
+0f
+0g
+1h
+1i
+1j
+0k
+0l
+0m
+1n
+0o
+0p
+0q
+0r
+0s
+0t
+0u
+0v
+0w
+1x
+0y
+0z
+0!
+0"
+1#
+0$
+0%
+0&
+0'
+1(
+1-
+0.
+1/
+09
+0:
+1;
+0<
+0=
+0>
+0?
+1@
+0A
+0B
+0C
+0D
+1E
+0F
+1G
+1H
+1I
+1J
+0K
+0)
+0*
+0+
+0,
+$end
+#1000000
