@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Relogio
-Fri Oct  4 11:20:05 2019
+Sat Oct  5 19:06:54 2019
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -14,9 +14,17 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Post-Synthesis Netlist Statistics for Top Partition
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
+  9. Parameter Settings for User Entity Instance: Top-level Entity: |CPU
+ 10. Parameter Settings for User Entity Instance: BancoRegistradores:BR
+ 11. Parameter Settings for User Entity Instance: mux2:MUXImediato
+ 12. Parameter Settings for User Entity Instance: mux2:MUXDataIn
+ 13. Port Connectivity Checks: "mux2:MUXDataIn"
+ 14. Port Connectivity Checks: "mux2:MUXImediato"
+ 15. Port Connectivity Checks: "BancoRegistradores:BR"
+ 16. Port Connectivity Checks: "UC:UC"
+ 17. Post-Synthesis Netlist Statistics for Top Partition
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
 
 
 
@@ -42,16 +50,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Oct  4 11:20:05 2019       ;
+; Analysis & Synthesis Status        ; Successful - Sat Oct  5 19:06:54 2019       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Relogio                                     ;
-; Top-level Entity Name              ; Decoder                                     ;
+; Top-level Entity Name              ; cpu                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 17                                          ;
-;     Total combinational functions  ; 17                                          ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
 ;     Dedicated logic registers      ; 0                                           ;
 ; Total registers                    ; 0                                           ;
-; Total pins                         ; 22                                          ;
+; Total pins                         ; 32                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -65,8 +73,10 @@ refer to the applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                                      ; Decoder            ; Relogio            ;
+; Top-level entity name                                                      ; CPU                ; Relogio            ;
 ; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; VHDL Show LMF Mapping Messages                                             ; Off                ;                    ;
+; VHDL Version                                                               ; VHDL_2008          ; VHDL_1993          ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                                ; Off                ; Off                ;
@@ -75,7 +85,6 @@ refer to the applicable agreement for further details.
 ; Preserve fewer node names                                                  ; On                 ; On                 ;
 ; Intel FPGA IP Evaluation Mode                                              ; Enable             ; Enable             ;
 ; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
-; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
 ; State Machine Processing                                                   ; Auto               ; Auto               ;
 ; Safe State Machine                                                         ; Off                ; Off                ;
 ; Extract Verilog State Machines                                             ; On                 ; On                 ;
@@ -161,45 +170,47 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                 ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                          ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------+---------+
-; Decoder.vhd                      ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/Decoder.vhd ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                            ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                     ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
+; BancoRegistradores.vhd           ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd ;         ;
+; CPU.vhd                          ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd                ;         ;
+; mux4.vhd                         ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd               ;         ;
+; Uc.vhd                           ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd                 ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                ;
-+---------------------------------------------+--------------+
-; Resource                                    ; Usage        ;
-+---------------------------------------------+--------------+
-; Estimated Total logic elements              ; 17           ;
-;                                             ;              ;
-; Total combinational functions               ; 17           ;
-; Logic element usage by number of LUT inputs ;              ;
-;     -- 4 input functions                    ; 5            ;
-;     -- 3 input functions                    ; 12           ;
-;     -- <=2 input functions                  ; 0            ;
-;                                             ;              ;
-; Logic elements by mode                      ;              ;
-;     -- normal mode                          ; 17           ;
-;     -- arithmetic mode                      ; 0            ;
-;                                             ;              ;
-; Total registers                             ; 0            ;
-;     -- Dedicated logic registers            ; 0            ;
-;     -- I/O registers                        ; 0            ;
-;                                             ;              ;
-; I/O pins                                    ; 22           ;
-;                                             ;              ;
-; Embedded Multiplier 9-bit elements          ; 0            ;
-;                                             ;              ;
-; Maximum fan-out node                        ; inO[0]~input ;
-; Maximum fan-out                             ; 12           ;
-; Total fan-out                               ; 90           ;
-; Average fan-out                             ; 1.48         ;
-+---------------------------------------------+--------------+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 32    ;
+;                                             ;       ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+;                                             ;       ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 1     ;
+; Total fan-out                               ; 32    ;
+; Average fan-out                             ; 0.50  ;
++---------------------------------------------+-------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -207,7 +218,7 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |Decoder                   ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |Decoder            ; Decoder     ; work         ;
+; |cpu                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 32   ; 0            ; |cpu                ; cpu         ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -227,19 +238,100 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |CPU ;
++----------------------------+-------+--------------------------------+
+; Parameter Name             ; Value ; Type                           ;
++----------------------------+-------+--------------------------------+
+; larguraBarramentoEnderecos ; 4     ; Signed Integer                 ;
+; larguraBarramentoDados     ; 7     ; Signed Integer                 ;
++----------------------------+-------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: BancoRegistradores:BR ;
++---------------------+-------+--------------------------------------+
+; Parameter Name      ; Value ; Type                                 ;
++---------------------+-------+--------------------------------------+
+; larguradados        ; 7     ; Signed Integer                       ;
+; larguraendbancoregs ; 4     ; Signed Integer                       ;
++---------------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mux2:MUXImediato ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; size           ; 7     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mux2:MUXDataIn ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; size           ; 7     ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------+
+; Port Connectivity Checks: "mux2:MUXDataIn" ;
++----------+-------+----------+--------------+
+; Port     ; Type  ; Severity ; Details      ;
++----------+-------+----------+--------------+
+; a1[6..1] ; Input ; Info     ; Stuck at GND ;
++----------+-------+----------+--------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux2:MUXImediato"                                                                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; b    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "BancoRegistradores:BR"                                                                ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; saidab ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UC:UC"                                                                                      ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; selmuxjump   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; selbotoes    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; enablewrite  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; resetcondreg ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; operation    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 22                          ;
-; cycloneiii_lcell_comb ; 17                          ;
-;     normal            ; 17                          ;
-;         3 data inputs ; 12                          ;
-;         4 data inputs ; 5                           ;
+; boundary_port         ; 32                          ;
+; cycloneiii_lcell_comb ; 1                           ;
+;     normal            ; 1                           ;
+;         0 data inputs ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 2.74                        ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -258,28 +350,106 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Fri Oct  4 11:19:52 2019
+    Info: Processing started: Sat Oct  5 19:06:44 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Relogio -c Relogio
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file BancoRegistradores.vhd
+    Info (12022): Found design unit 1: BancoRegistradores-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd Line: 30
+    Info (12023): Found entity 1: BancoRegistradores File: /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file CPU.vhd
+    Info (12022): Found design unit 1: cpu-estrutural File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 25
+    Info (12023): Found entity 1: cpu File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file ProgramCounter.vhd
+    Info (12022): Found design unit 1: ProgramCounter-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/ProgramCounter.vhd Line: 15
+    Info (12023): Found entity 1: ProgramCounter File: /home/lucasv/intelFPGA_lite/17.1/Projects/ProgramCounter.vhd Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file Chaves.vhd
+    Info (12023): Found entity 1: Chaves File: /home/lucasv/intelFPGA_lite/17.1/Projects/Chaves.vhd Line: 5
+Info (12021): Found 1 design units, including 1 entities, in source file Botoes.vhd
+    Info (12023): Found entity 1: Botoes File: /home/lucasv/intelFPGA_lite/17.1/Projects/Botoes.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file ULA.vhd
     Info (12022): Found design unit 1: ULA-Behavioral File: /home/lucasv/intelFPGA_lite/17.1/Projects/ULA.vhd Line: 15
     Info (12023): Found entity 1: ULA File: /home/lucasv/intelFPGA_lite/17.1/Projects/ULA.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file Decoder.vhd
     Info (12022): Found design unit 1: Decoder-decode File: /home/lucasv/intelFPGA_lite/17.1/Projects/Decoder.vhd Line: 15
     Info (12023): Found entity 1: Decoder File: /home/lucasv/intelFPGA_lite/17.1/Projects/Decoder.vhd Line: 6
-Info (12127): Elaborating entity "Decoder" for the top level hierarchy
-Info (286030): Timing-Driven Synthesis is running
+Info (12021): Found 2 design units, including 1 entities, in source file mux4.vhd
+    Info (12022): Found design unit 1: mux2-rtl File: /home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd Line: 14
+    Info (12023): Found entity 1: mux2 File: /home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file Somador.vhd
+    Info (12022): Found design unit 1: Somador-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/Somador.vhd Line: 18
+    Info (12023): Found entity 1: Somador File: /home/lucasv/intelFPGA_lite/17.1/Projects/Somador.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file Uc.vhd
+    Info (12022): Found design unit 1: UC-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 16
+    Info (12023): Found entity 1: UC File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file ROM.vhd
+    Info (12022): Found design unit 1: ROM-initFileROM File: /home/lucasv/intelFPGA_lite/17.1/Projects/ROM.vhd Line: 20
+    Info (12023): Found entity 1: ROM File: /home/lucasv/intelFPGA_lite/17.1/Projects/ROM.vhd Line: 6
+Info (12127): Elaborating entity "CPU" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(16): used implicit default value for signal "outDecoder" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(17): used implicit default value for signal "dataOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(20): used implicit default value for signal "habilitaBotaoOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 20
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(36): object "saidaBbanco" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 36
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(39): object "entrada0ula" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 39
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(39): used implicit default value for signal "saidaula" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 39
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(40): used implicit default value for signal "enableWriteBanco" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 40
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "selMuxJump" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "selBotoes" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "enableWrite" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "resetCondReg" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(45): object "operacaoULA" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 45
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(48): used implicit default value for signal "CondRegOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 48
+Info (12128): Elaborating entity "UC" for hierarchy "UC:UC" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 65
+Warning (10492): VHDL Process Statement warning at Uc.vhd(69): signal "inCondReg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 69
+Warning (10631): VHDL Process Statement warning at Uc.vhd(18): inferring latch(es) for signal or variable "Operation", which holds its previous value in one or more paths through the process File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+Info (10041): Inferred latch for "Operation[0]" at Uc.vhd(18) File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+Info (10041): Inferred latch for "Operation[1]" at Uc.vhd(18) File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+Info (10041): Inferred latch for "Operation[2]" at Uc.vhd(18) File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+Info (12128): Elaborating entity "BancoRegistradores" for hierarchy "BancoRegistradores:BR" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 81
+Info (12128): Elaborating entity "mux2" for hierarchy "mux2:MUXImediato" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 98
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "outDecoder[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
+    Warning (13410): Pin "outDecoder[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
+    Warning (13410): Pin "outDecoder[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
+    Warning (13410): Pin "outDecoder[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
+    Warning (13410): Pin "dataOut[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
+    Warning (13410): Pin "dataOut[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
+    Warning (13410): Pin "dataOut[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
+    Warning (13410): Pin "dataOut[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
+    Warning (13410): Pin "habilitaBotaoOut" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 20
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 39 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 10 input pins
-    Info (21059): Implemented 12 output pins
-    Info (21061): Implemented 17 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 991 megabytes
-    Info: Processing ended: Fri Oct  4 11:20:05 2019
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:28
+Warning (21074): Design contains 23 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clk" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 11
+    Warning (15610): No output dependent on input pin "ROM[0]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[1]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[2]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[3]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[4]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[5]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[6]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[7]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[8]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[9]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[10]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[11]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[12]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[13]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[14]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[15]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[16]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "ROM[17]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "baseT" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 18
+    Warning (15610): No output dependent on input pin "buttons[0]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 19
+    Warning (15610): No output dependent on input pin "buttons[1]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 19
+    Warning (15610): No output dependent on input pin "buttons[2]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 19
+Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 23 input pins
+    Info (21059): Implemented 9 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 50 warnings
+    Info: Peak virtual memory: 966 megabytes
+    Info: Processing ended: Sat Oct  5 19:06:54 2019
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:20
 
 

@@ -1,0 +1,72 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/lucasv/intelFPGA_lite/17.1/Projects/simulation/modelsim
+Ebancoregistradores
+Z1 w1570219869
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8/home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd
+Z6 F/home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd
+l0
+L7
+VigDI^^>N9iJ]WR0lSJT8:1
+!s100 4`@ObeI[5@bA55QHa:Mmd0
+Z7 OV;C;10.5b;63
+33
+Z8 !s110 1570313270
+!i10b 1
+Z9 !s108 1570313270.000000
+Z10 !s90 -reportprogress|300|-2008|-work|work|/home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd|
+Z11 !s107 /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd|
+!i113 1
+Z12 o-2008 -work work
+Z13 tExplicit 1 CvgOpt 0
+Acomportamento
+R2
+R3
+R4
+DEx4 work 18 bancoregistradores 0 22 igDI^^>N9iJ]WR0lSJT8:1
+l38
+L30
+V8ffg:cc>F5^@X<d^J;Li:1
+!s100 L713Za4=GJ8hA0HTi7:U:0
+R7
+33
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Emux2
+w1570313126
+R3
+R4
+R0
+8/home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd
+F/home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd
+l0
+L3
+VAWhYQ@75OhXm8W1];4L?X1
+!s100 `k96Mbj^[E6Rk83`S@XOB3
+R7
+33
+R8
+!i10b 1
+R9
+!s90 -reportprogress|300|-2008|-work|work|/home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd|
+!s107 /home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd|
+!i113 1
+R12
+R13

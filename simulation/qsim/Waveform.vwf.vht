@@ -18,9 +18,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "09/27/2019 10:47:39"
+-- Generated on "10/05/2019 17:17:36"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          ULA
+-- Vhdl Test Bench(with test vectors) for design  :          mux4
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -28,96 +28,145 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY ULA_vhd_vec_tst IS
-END ULA_vhd_vec_tst;
-ARCHITECTURE ULA_arch OF ULA_vhd_vec_tst IS
+ENTITY mux4_vhd_vec_tst IS
+END mux4_vhd_vec_tst;
+ARCHITECTURE mux4_arch OF mux4_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL inA : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL inB : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL outO : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL sel : STD_LOGIC_VECTOR(2 DOWNTO 0);
-COMPONENT ULA
+SIGNAL a1 : STD_LOGIC_VECTOR(8 DOWNTO 0);
+SIGNAL a2 : STD_LOGIC_VECTOR(8 DOWNTO 0);
+SIGNAL b : STD_LOGIC_VECTOR(8 DOWNTO 0);
+SIGNAL Sel : STD_LOGIC;
+COMPONENT mux4
 	PORT (
-	inA : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-	inB : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-	outO : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-	sel : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
+	a1 : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+	a2 : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+	b : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+	Sel : IN STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : ULA
+	i1 : mux4
 	PORT MAP (
 -- list connections between master ports and signals
-	inA => inA,
-	inB => inB,
-	outO => outO,
-	sel => sel
+	a1 => a1,
+	a2 => a2,
+	b => b,
+	Sel => Sel
 	);
--- inA[3]
-t_prcs_inA_3: PROCESS
+-- a1[8]
+t_prcs_a1_8: PROCESS
 BEGIN
-	inA(3) <= '0';
+	a1(8) <= '0';
 WAIT;
-END PROCESS t_prcs_inA_3;
--- inA[2]
-t_prcs_inA_2: PROCESS
+END PROCESS t_prcs_a1_8;
+-- a1[7]
+t_prcs_a1_7: PROCESS
 BEGIN
-	inA(2) <= '0';
+	a1(7) <= '0';
 WAIT;
-END PROCESS t_prcs_inA_2;
--- inA[1]
-t_prcs_inA_1: PROCESS
+END PROCESS t_prcs_a1_7;
+-- a1[6]
+t_prcs_a1_6: PROCESS
 BEGIN
-	inA(1) <= '1';
+	a1(6) <= '0';
 WAIT;
-END PROCESS t_prcs_inA_1;
--- inA[0]
-t_prcs_inA_0: PROCESS
+END PROCESS t_prcs_a1_6;
+-- a1[5]
+t_prcs_a1_5: PROCESS
 BEGIN
-	inA(0) <= '0';
+	a1(5) <= '0';
 WAIT;
-END PROCESS t_prcs_inA_0;
--- inB[3]
-t_prcs_inB_3: PROCESS
+END PROCESS t_prcs_a1_5;
+-- a1[4]
+t_prcs_a1_4: PROCESS
 BEGIN
-	inB(3) <= '0';
+	a1(4) <= '0';
 WAIT;
-END PROCESS t_prcs_inB_3;
--- inB[2]
-t_prcs_inB_2: PROCESS
+END PROCESS t_prcs_a1_4;
+-- a1[3]
+t_prcs_a1_3: PROCESS
 BEGIN
-	inB(2) <= '0';
+	a1(3) <= '0';
 WAIT;
-END PROCESS t_prcs_inB_2;
--- inB[1]
-t_prcs_inB_1: PROCESS
+END PROCESS t_prcs_a1_3;
+-- a1[2]
+t_prcs_a1_2: PROCESS
 BEGIN
-	inB(1) <= '0';
+	a1(2) <= '0';
 WAIT;
-END PROCESS t_prcs_inB_1;
--- inB[0]
-t_prcs_inB_0: PROCESS
+END PROCESS t_prcs_a1_2;
+-- a1[1]
+t_prcs_a1_1: PROCESS
 BEGIN
-	inB(0) <= '1';
+	a1(1) <= '0';
 WAIT;
-END PROCESS t_prcs_inB_0;
--- sel[2]
-t_prcs_sel_2: PROCESS
+END PROCESS t_prcs_a1_1;
+-- a1[0]
+t_prcs_a1_0: PROCESS
 BEGIN
-	sel(2) <= '1';
+	a1(0) <= '0';
 WAIT;
-END PROCESS t_prcs_sel_2;
--- sel[1]
-t_prcs_sel_1: PROCESS
+END PROCESS t_prcs_a1_0;
+-- a2[8]
+t_prcs_a2_8: PROCESS
 BEGIN
-	sel(1) <= '0';
+	a2(8) <= '1';
 WAIT;
-END PROCESS t_prcs_sel_1;
--- sel[0]
-t_prcs_sel_0: PROCESS
+END PROCESS t_prcs_a2_8;
+-- a2[7]
+t_prcs_a2_7: PROCESS
 BEGIN
-	sel(0) <= '1';
+	a2(7) <= '1';
 WAIT;
-END PROCESS t_prcs_sel_0;
-END ULA_arch;
+END PROCESS t_prcs_a2_7;
+-- a2[6]
+t_prcs_a2_6: PROCESS
+BEGIN
+	a2(6) <= '1';
+WAIT;
+END PROCESS t_prcs_a2_6;
+-- a2[5]
+t_prcs_a2_5: PROCESS
+BEGIN
+	a2(5) <= '0';
+WAIT;
+END PROCESS t_prcs_a2_5;
+-- a2[4]
+t_prcs_a2_4: PROCESS
+BEGIN
+	a2(4) <= '0';
+WAIT;
+END PROCESS t_prcs_a2_4;
+-- a2[3]
+t_prcs_a2_3: PROCESS
+BEGIN
+	a2(3) <= '0';
+WAIT;
+END PROCESS t_prcs_a2_3;
+-- a2[2]
+t_prcs_a2_2: PROCESS
+BEGIN
+	a2(2) <= '0';
+WAIT;
+END PROCESS t_prcs_a2_2;
+-- a2[1]
+t_prcs_a2_1: PROCESS
+BEGIN
+	a2(1) <= '0';
+WAIT;
+END PROCESS t_prcs_a2_1;
+-- a2[0]
+t_prcs_a2_0: PROCESS
+BEGIN
+	a2(0) <= '0';
+WAIT;
+END PROCESS t_prcs_a2_0;
+
+-- Sel
+t_prcs_Sel: PROCESS
+BEGIN
+	Sel <= '1';
+WAIT;
+END PROCESS t_prcs_Sel;
+END mux4_arch;
