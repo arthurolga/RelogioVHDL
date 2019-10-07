@@ -38,23 +38,23 @@ begin
 	selDataIn <= '1' ; -- Seleciona ULa para escrever na memoria
 	Operation <= "001";
 	
-	when "010" => -- ; A%B
-	selInUla <= '1' ; -- Sel A para ULA
-	enableWrite <= '1' ; -- Hab escrita no BR
-	selDataIn <= '1' ; -- Seleciona ULa para escrever na memoria
+	when "010" => -- Checa se o RegCond, se ele tiver 1, ele pula pro Imediato
+	if (inCondReg = '1') then
+		selMuxJump <= '1'; -- Jump
+		resetCondReg <= '1';
+	end if;
 	Operation <= "010";
 	
-	when "011" => -- OR A|B
-	selInUla <= '1' ; -- Sel A para ULA
-	enableWrite <= '1' ; -- Hab escrita no BR
-	selDataIn <= '1' ; -- Seleciona ULa para escrever na memoria
+	-- JE - Jump if B equals 0 -- JE %5
+	when "011" => -- JE
 	Operation <= "011";
 	
-	when "100" => -- NOT
-	selInUla <= '1' ; -- Sel A para ULA
-	enableWrite <= '1' ; -- Hab escrita no BR
-	selDataIn <= '1' ; -- Seleciona ULa par	opCode : in std_logic_vector(2 downto 0);a escrever na memoria
+	--  JL - Jump if B equals 0 -- JL %5, $10
+	when "100" => -- JL
+	selInUla <= '0' ; -- Sel Imediato para ULA
 	Operation <= "100";
+	
+	
 	
 	when "101" => -- Equal A==B
 	selInUla <= '1' ; -- Sel A para ULA
@@ -65,11 +65,8 @@ begin
 	when "110" => -- JMP
 	selMuxJump <= '1'; -- Seleciona o imediado para dar JM
 	
-	when "111" => -- Jmp condicional/ chega o inCondreg
-	if (inCondReg = '1') then
-		selMuxJump <= '1'; -- Jump
-		resetCondReg <= '1';
-	end if;	
+	when "111" => -- STR
+	Operation <= "111";	
 
 	when others =>
 	NULL;

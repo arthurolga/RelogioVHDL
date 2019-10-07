@@ -1,19 +1,30 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+--
+--Checklist:
+--
+--* Colocar a saida DataOut do bancoRegistradores
+--* ROM
+--* Registrador Condicional
+--
+
 entity cpu is
     generic (
         larguraBarramentoEnderecos  : natural := 4;
-        larguraBarramentoDados      : natural := 7
+		  larguraBarramentoMemoria		: natural := 3;
+        larguraBarramentoDados      : natural := 7;
+		  larguraDadosROM					: natural := 3
     );
     port
     (
         clk : IN  STD_LOGIC;
 		  -- Instrucao
 		  ROM : IN std_logic_vector(17 downto 0);
+		  ROMIndex : out std_logic_vector (larguraDadosROM -1 downto 0);
 		  
 		  
-        outDecoder : out std_logic_vector(larguraBarramentoEnderecos-1 downto 0);
+        outDecoder : out std_logic_vector(17 downto 0);
 		  dataOut : out std_logic_vector(larguraBarramentoEnderecos -1 downto 0);
 		  baseT : in std_logic;
 		  buttons : in std_logic_vector(2 downto 0);
@@ -45,7 +56,8 @@ architecture estrutural of cpu is
 	signal opCode, operacaoULA : std_logic_vector(2 DOWNTO 0);
 	
 	-- Signals gerais
-	signal CondRegOut : std_logic;
+	signal CondRegOut, enablePC, resetPC, doJump : std_logic;
+	signal saidaAcumulador,entradaAcumulador ,entradaPC, saidaPC : std_logic_vector(2 downto 0);
 	
 	
 	
@@ -107,7 +119,7 @@ begin
         b               => entrada0ula
     );
 	 
-	 -- Instanciação de MUXImediato(0) cm Reg A(1)
+	 -- Instanciação de MUX baseT(0) cm ULA(1)
 	 MUXDataIn : entity work.mux2 
     generic map (
         size    => larguraBarramentoDados
@@ -120,6 +132,77 @@ begin
         b               => dataIn
     );
 	 
+	 -- Instanciação de MUX baseT(0) cm ULA(1)
+	 ULA1 : entity work.ULA 
+    generic map (
+        larguraDados    => larguraBarramentoDados
+    )
+    port map
+    (
+        inA					=> entrada0ula,
+		  inB					=> saidaBbanco,
+		  outO				=> saidaula,
+		  sel					=> operacaoULA,
+		  doJump				=> doJump
+		  
+
+    );
+	 
+	 -- Instanciação de MUX Acumulador(0) cm Jump(1)
+	 MUXJump : entity work.mux2 
+    generic map (
+        size    => larguraDadosROM
+    )
+    port map
+    (
+        a1            => saidaAcumulador, -- Base de tempo eh 1 ou 0, mas a entrada tem q ser 7 bits
+        a2            => ROM(2 downto 0),
+        sel             => selMuxJump,
+        b               => entradaPC
+    );
+	 
+	 -- Instanciação de Somador com Constante
+    SOMADOR1 : entity work.Somador 
+    generic map (
+        larguraDados    => larguraDadosROM -- 3 bits pra ROM, 
+    )
+    port map
+    (
+        entradaA         => saidaPC,
+		  entradaB			 => "001", -- std_logic_vector(largura -1 downto 1) & 1;
+        saida           => saidaAcumulador
+    );
+	 
+	 -- Instanciação de Somador com Constante
+    PC1 : entity work.ProgramCounter 
+    generic map (
+        larguraDados    => larguraDadosROM -- 3 bits pra ROM, 
+    )
+    port map
+    (
+		  DIN  => entradaPC,
+        DOUT => saidaPC,
+        ENABLE => enablePC,
+        CLK => clk,
+		  RST => resetPC
+    );
+	 
+	 -- Reg de COndicao de Jump
+    JMPREG : entity work.Registrador1b 
+    port map
+    (
+		  DIN  => doJump,
+        DOUT => CondRegOut,
+        ENABLE => enablePC,
+        CLK => clk,
+		  RST => resetCondReg
+    );
+	 
+	 
+	 -- Saindo pra ROM
+	 ROMIndex <= saidaPC;
+	 outDecoder <= ROM;
+	 dataOut <= saidaBbanco(larguraBarramentoEnderecos -1 downto 0); --Cuidado cm isso!!!!
 	 
 	 
 
