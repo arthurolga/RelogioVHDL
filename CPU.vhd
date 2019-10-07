@@ -18,6 +18,10 @@ entity cpu is
     );
     port
     (
+	 
+			HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7 : out std_logic_vector(6 downto 0);
+			
+			
         clk : IN  STD_LOGIC;
 		  -- Instrucao
 		  ROM : IN std_logic_vector(17 downto 0);
@@ -249,5 +253,34 @@ begin
 --    
 --    -- Completar com a instanciação de demais 
 --    -- componentes necessários
+
+
+
+
+		-- Instanciação de MUXImediato(0) cm Reg A(1)
+	 teste7seg : entity work.Conv7seg
+    port map
+    (
+        dadoHex            => entrada0ula(3 downto 0),
+        HEX          => HEX0
+    );
+	 
+	 
+	 	 teste7seg2 : entity work.Conv7seg 
+  
+    port map
+    (
+        dadoHex            => saidaBbanco(3 downto 0),
+        HEX          => HEX1
+    );
+	 
+	 
+	 teste7seg3 : entity work.Conv7seg 
+  
+    port map
+    (
+        dadoHex            => saidaula(3 downto 0),
+        HEX          => HEX3
+    );
 
 end architecture;

@@ -20,41 +20,25 @@ architecture Behavioral of ULA is
 
 signal Z : std_logic_vector(larguraDados-1 downto 0);
 
-begin
-process(inA,inB,sel)
-begin
-	
-	if(inA = inB) then
-		Z <= "1111111";
-	else
-		Z <= "0000000";
-	end if;
-	
-	case sel is
-	
-	when "000" =>
-	outO <= inA + inB; -- Adicao A+B
-	when "001" =>
-	outO <= inA; -- MOV A
-	-- when "010" =>
-	-- N faz Nada na ULA! Eh o check do IF jump
-	when "011" =>
-	-- JE - Jump if B equals 0 -- JE %5
-	if inB = "0000" then
-		doJump <= '1';
-	end if;
-	when "100" =>
-	-- JL - Jump if B < Imediato -- JL %5, $10-- Ve se o endereco5 eh menor que 10
-	if inB < inA  then
-		doJump <= '1';
-	end if;
-	when "101" =>
-	outO <= Z; -- EQL A == B
-	when others =>
-	NULL;
+signal bIsZero, bIsLessA : std_logic;
 
-	end case;
-end process;
+begin
+	
+	bIsZero <= '1' when (inB = "0000000") else '0';
+	bIsLessA <= '1' when (inB < inA) else '0';
+	Z <= "1111111" when (inA = inB) else "0000000";
+	
+	
+	outO <= 
+	inA + inB 	when (sel = "000") else -- Adicao A+B
+	inA 			when (sel = "001") else -- MOV A
+	Z				when (sel = "101") else
+	"0000000";
+	
+	doJump<=
+	bIsZero		when (sel = "011") else -- JE
+	bIsLessA		when (sel = "100") else	-- JL 
+	'0'; 
 
 end architecture;
 

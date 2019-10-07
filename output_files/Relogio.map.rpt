@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Relogio
-Sat Oct  5 19:06:54 2019
+Mon Oct  7 17:27:19 2019
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -13,18 +13,25 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Parameter Settings for User Entity Instance: Top-level Entity: |CPU
- 10. Parameter Settings for User Entity Instance: BancoRegistradores:BR
- 11. Parameter Settings for User Entity Instance: mux2:MUXImediato
- 12. Parameter Settings for User Entity Instance: mux2:MUXDataIn
- 13. Port Connectivity Checks: "mux2:MUXDataIn"
- 14. Port Connectivity Checks: "mux2:MUXImediato"
- 15. Port Connectivity Checks: "BancoRegistradores:BR"
- 16. Port Connectivity Checks: "UC:UC"
- 17. Post-Synthesis Netlist Statistics for Top Partition
- 18. Elapsed Time Per Partition
- 19. Analysis & Synthesis Messages
+  8. User-Specified and Inferred Latches
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |CPU
+ 14. Parameter Settings for User Entity Instance: BancoRegistradores:BR
+ 15. Parameter Settings for User Entity Instance: mux2:MUXImediato
+ 16. Parameter Settings for User Entity Instance: mux2:MUXDataIn
+ 17. Parameter Settings for User Entity Instance: ULA:ULA1
+ 18. Parameter Settings for User Entity Instance: mux2:MUXJump
+ 19. Parameter Settings for User Entity Instance: Somador:SOMADOR1
+ 20. Parameter Settings for User Entity Instance: ProgramCounter:PC1
+ 21. Port Connectivity Checks: "Somador:SOMADOR1"
+ 22. Port Connectivity Checks: "mux2:MUXDataIn"
+ 23. Port Connectivity Checks: "UC:UC"
+ 24. Post-Synthesis Netlist Statistics for Top Partition
+ 25. Elapsed Time Per Partition
+ 26. Analysis & Synthesis Messages
 
 
 
@@ -50,16 +57,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Oct  5 19:06:54 2019       ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct  7 17:27:19 2019       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; Relogio                                     ;
 ; Top-level Entity Name              ; cpu                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 0                                           ;
-;     Total combinational functions  ; 0                                           ;
+; Total logic elements               ; 32                                          ;
+;     Total combinational functions  ; 32                                          ;
 ;     Dedicated logic registers      ; 0                                           ;
 ; Total registers                    ; 0                                           ;
-; Total pins                         ; 32                                          ;
+; Total pins                         ; 105                                         ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -163,10 +170,11 @@ refer to the applicable agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -177,50 +185,207 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
 ; BancoRegistradores.vhd           ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd ;         ;
 ; CPU.vhd                          ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd                ;         ;
+; ProgramCounter.vhd               ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/ProgramCounter.vhd     ;         ;
+; ULA.vhd                          ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/ULA.vhd                ;         ;
 ; mux4.vhd                         ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/mux4.vhd               ;         ;
+; Somador.vhd                      ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/Somador.vhd            ;         ;
 ; Uc.vhd                           ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd                 ;         ;
+; Registrador1.vhd                 ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/Registrador1.vhd       ;         ;
+; Conv7seg.vhd                     ; yes             ; User VHDL File  ; /home/lucasv/intelFPGA_lite/17.1/Projects/Conv7seg.vhd           ;         ;
 +----------------------------------+-----------------+-----------------+------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-;                                             ;       ;
-; Total combinational functions               ; 0     ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 0     ;
-;     -- 3 input functions                    ; 0     ;
-;     -- <=2 input functions                  ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 0     ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 0     ;
-;     -- Dedicated logic registers            ; 0     ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 32    ;
-;                                             ;       ;
-; Embedded Multiplier 9-bit elements          ; 0     ;
-;                                             ;       ;
-; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 1     ;
-; Total fan-out                               ; 32    ;
-; Average fan-out                             ; 0.50  ;
-+---------------------------------------------+-------+
++-----------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                           ;
++---------------------------------------------+-------------------------+
+; Resource                                    ; Usage                   ;
++---------------------------------------------+-------------------------+
+; Estimated Total logic elements              ; 32                      ;
+;                                             ;                         ;
+; Total combinational functions               ; 32                      ;
+; Logic element usage by number of LUT inputs ;                         ;
+;     -- 4 input functions                    ; 24                      ;
+;     -- 3 input functions                    ; 8                       ;
+;     -- <=2 input functions                  ; 0                       ;
+;                                             ;                         ;
+; Logic elements by mode                      ;                         ;
+;     -- normal mode                          ; 32                      ;
+;     -- arithmetic mode                      ; 0                       ;
+;                                             ;                         ;
+; Total registers                             ; 0                       ;
+;     -- Dedicated logic registers            ; 0                       ;
+;     -- I/O registers                        ; 0                       ;
+;                                             ;                         ;
+; I/O pins                                    ; 105                     ;
+;                                             ;                         ;
+; Embedded Multiplier 9-bit elements          ; 0                       ;
+;                                             ;                         ;
+; Maximum fan-out node                        ; mux2:MUXImediato|b[2]~2 ;
+; Maximum fan-out                             ; 10                      ;
+; Total fan-out                               ; 257                     ;
+; Average fan-out                             ; 1.06                    ;
++---------------------------------------------+-------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |cpu                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 32   ; 0            ; |cpu                ; cpu         ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                           ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name      ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+; |cpu                       ; 32 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 105  ; 0            ; |cpu                     ; cpu         ; work         ;
+;    |UC:UC|                 ; 4 (4)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|UC:UC               ; UC          ; work         ;
+;    |ULA:ULA1|              ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|ULA:ULA1            ; ULA         ; work         ;
+;    |conv7Seg:teste7seg3|   ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|conv7Seg:teste7seg3 ; conv7Seg    ; work         ;
+;    |conv7Seg:teste7seg|    ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|conv7Seg:teste7seg  ; conv7Seg    ; work         ;
+;    |mux2:MUXImediato|      ; 3 (3)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu|mux2:MUXImediato    ; mux2        ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; UC:UC|Operation[1]                                 ; UC:UC|Mux8          ; yes                    ;
+; UC:UC|Operation[2]                                 ; UC:UC|Mux8          ; yes                    ;
+; UC:UC|Operation[0]                                 ; UC:UC|Mux8          ; yes                    ;
+; Number of user-specified and inferred latches = 3  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++---------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                    ;
++-----------------------------------------+---------------------------------------------+
+; Register name                           ; Reason for Removal                          ;
++-----------------------------------------+---------------------------------------------+
+; Registrador1b:JMPREG|DOUT               ; Stuck at GND due to stuck port clock_enable ;
+; ProgramCounter:PC1|DOUT[0..2]           ; Stuck at GND due to stuck port clock_enable ;
+; BancoRegistradores:BR|registrador~13    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~20    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~27    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~34    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~41    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~48    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~55    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~62    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~69    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~76    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~83    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~90    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~97    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~104   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~111   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~118   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~14    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~21    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~28    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~35    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~42    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~49    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~56    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~63    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~70    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~77    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~84    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~91    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~98    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~105   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~112   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~119   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~15    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~22    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~29    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~36    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~43    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~50    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~57    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~64    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~71    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~78    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~85    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~92    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~99    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~106   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~113   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~120   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~12    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~19    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~26    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~33    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~40    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~47    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~54    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~61    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~68    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~75    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~82    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~89    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~96    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~103   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~110   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~117   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~18    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~25    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~32    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~39    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~46    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~53    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~60    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~67    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~74    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~81    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~88    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~95    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~102   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~109   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~116   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~123   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~17    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~24    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~31    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~38    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~45    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~52    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~59    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~66    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~73    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~80    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~87    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~94    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~101   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~108   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~115   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~122   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~16    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~23    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~30    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~37    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~44    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~51    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~58    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~65    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~72    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~79    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~86    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~93    ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~100   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~107   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~114   ; Stuck at GND due to stuck port data_in      ;
+; BancoRegistradores:BR|registrador~121   ; Stuck at GND due to stuck port data_in      ;
+; Total Number of Removed Registers = 116 ;                                             ;
++-----------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                         ;
++---------------------------+--------------------------------+----------------------------------------+
+; Register name             ; Reason for Removal             ; Registers Removed due to This Register ;
++---------------------------+--------------------------------+----------------------------------------+
+; Registrador1b:JMPREG|DOUT ; Stuck at GND                   ; ProgramCounter:PC1|DOUT[2]             ;
+;                           ; due to stuck port clock_enable ;                                        ;
++---------------------------+--------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -238,13 +403,26 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |cpu|mux2:MUXImediato|b[1] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |cpu|ULA:ULA1|outO[2]      ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |cpu|mux2:MUXDataIn|b[6]   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
 +---------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Top-level Entity: |CPU ;
 +----------------------------+-------+--------------------------------+
 ; Parameter Name             ; Value ; Type                           ;
 +----------------------------+-------+--------------------------------+
 ; larguraBarramentoEnderecos ; 4     ; Signed Integer                 ;
+; larguraBarramentoMemoria   ; 3     ; Signed Integer                 ;
 ; larguraBarramentoDados     ; 7     ; Signed Integer                 ;
+; larguraDadosROM            ; 3     ; Signed Integer                 ;
 +----------------------------+-------+--------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -280,6 +458,56 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ULA:ULA1 ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; larguradados   ; 7     ; Signed Integer               ;
++----------------+-------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mux2:MUXJump ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; size           ; 3     ; Signed Integer                   ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Somador:SOMADOR1 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; larguradados   ; 3     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ProgramCounter:PC1 ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; larguradados   ; 3     ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "Somador:SOMADOR1"     ;
++----------------+-------+----------+--------------+
+; Port           ; Type  ; Severity ; Details      ;
++----------------+-------+----------+--------------+
+; entradab[2..1] ; Input ; Info     ; Stuck at GND ;
+; entradab[0]    ; Input ; Info     ; Stuck at VCC ;
++----------------+-------+----------+--------------+
+
+
 +--------------------------------------------+
 ; Port Connectivity Checks: "mux2:MUXDataIn" ;
 +----------+-------+----------+--------------+
@@ -289,35 +517,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+-------+----------+--------------+
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "mux2:MUXImediato"                                                                   ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; b    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "BancoRegistradores:BR"                                                                ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-; Port   ; Type   ; Severity ; Details                                                                             ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-; saidab ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "UC:UC"                                                                                      ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port         ; Type   ; Severity ; Details                                                                             ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
-; selmuxjump   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; selbotoes    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; enablewrite  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; resetcondreg ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; operation    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UC:UC"                                                                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; selbotoes   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; enablewrite ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -325,13 +532,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 32                          ;
-; cycloneiii_lcell_comb ; 1                           ;
-;     normal            ; 1                           ;
-;         0 data inputs ; 1                           ;
+; boundary_port         ; 105                         ;
+; cycloneiii_lcell_comb ; 34                          ;
+;     normal            ; 34                          ;
+;         0 data inputs ; 2                           ;
+;         3 data inputs ; 8                           ;
+;         4 data inputs ; 24                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 5.00                        ;
+; Average LUT depth     ; 3.35                        ;
 +-----------------------+-----------------------------+
 
 
@@ -350,16 +559,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sat Oct  5 19:06:44 2019
+    Info: Processing started: Mon Oct  7 17:27:09 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Relogio -c Relogio
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file Registrador.vhd
+    Info (12022): Found design unit 1: Registrador-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/Registrador.vhd Line: 15
+    Info (12023): Found entity 1: Registrador File: /home/lucasv/intelFPGA_lite/17.1/Projects/Registrador.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file BancoRegistradores.vhd
     Info (12022): Found design unit 1: BancoRegistradores-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd Line: 30
     Info (12023): Found entity 1: BancoRegistradores File: /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file CPU.vhd
-    Info (12022): Found design unit 1: cpu-estrutural File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 25
-    Info (12023): Found entity 1: cpu File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 4
+    Info (12022): Found design unit 1: cpu-estrutural File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 40
+    Info (12023): Found entity 1: cpu File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 12
 Info (12021): Found 2 design units, including 1 entities, in source file ProgramCounter.vhd
     Info (12022): Found design unit 1: ProgramCounter-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/ProgramCounter.vhd Line: 15
     Info (12023): Found entity 1: ProgramCounter File: /home/lucasv/intelFPGA_lite/17.1/Projects/ProgramCounter.vhd Line: 4
@@ -368,7 +580,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file Chaves.
 Info (12021): Found 1 design units, including 1 entities, in source file Botoes.vhd
     Info (12023): Found entity 1: Botoes File: /home/lucasv/intelFPGA_lite/17.1/Projects/Botoes.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file ULA.vhd
-    Info (12022): Found design unit 1: ULA-Behavioral File: /home/lucasv/intelFPGA_lite/17.1/Projects/ULA.vhd Line: 15
+    Info (12022): Found design unit 1: ULA-Behavioral File: /home/lucasv/intelFPGA_lite/17.1/Projects/ULA.vhd Line: 19
     Info (12023): Found entity 1: ULA File: /home/lucasv/intelFPGA_lite/17.1/Projects/ULA.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file Decoder.vhd
     Info (12022): Found design unit 1: Decoder-decode File: /home/lucasv/intelFPGA_lite/17.1/Projects/Decoder.vhd Line: 15
@@ -385,71 +597,114 @@ Info (12021): Found 2 design units, including 1 entities, in source file Uc.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file ROM.vhd
     Info (12022): Found design unit 1: ROM-initFileROM File: /home/lucasv/intelFPGA_lite/17.1/Projects/ROM.vhd Line: 20
     Info (12023): Found entity 1: ROM File: /home/lucasv/intelFPGA_lite/17.1/Projects/ROM.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file Registrador1.vhd
+    Info (12022): Found design unit 1: Registrador1b-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/Registrador1.vhd Line: 12
+    Info (12023): Found entity 1: Registrador1b File: /home/lucasv/intelFPGA_lite/17.1/Projects/Registrador1.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file Conv7seg.vhd
+    Info (12022): Found design unit 1: conv7Seg-comportamento File: /home/lucasv/intelFPGA_lite/17.1/Projects/Conv7seg.vhd Line: 14
+    Info (12023): Found entity 1: conv7Seg File: /home/lucasv/intelFPGA_lite/17.1/Projects/Conv7seg.vhd Line: 4
 Info (12127): Elaborating entity "CPU" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(16): used implicit default value for signal "outDecoder" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(17): used implicit default value for signal "dataOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(20): used implicit default value for signal "habilitaBotaoOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 20
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(36): object "saidaBbanco" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 36
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(39): object "entrada0ula" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 39
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(39): used implicit default value for signal "saidaula" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 39
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(40): used implicit default value for signal "enableWriteBanco" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 40
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "selMuxJump" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "selBotoes" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "enableWrite" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(43): object "resetCondReg" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(45): object "operacaoULA" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 45
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(48): used implicit default value for signal "CondRegOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 48
-Info (12128): Elaborating entity "UC" for hierarchy "UC:UC" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 65
-Warning (10492): VHDL Process Statement warning at Uc.vhd(69): signal "inCondReg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 69
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(22): used implicit default value for signal "HEX2" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(22): used implicit default value for signal "HEX4" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(22): used implicit default value for signal "HEX5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(22): used implicit default value for signal "HEX6" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(22): used implicit default value for signal "HEX7" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(35): used implicit default value for signal "habilitaBotaoOut" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 35
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(55): used implicit default value for signal "enableWriteBanco" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 55
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(58): object "selBotoes" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 58
+Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(58): object "enableWrite" assigned a value but never read File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 58
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(63): used implicit default value for signal "enablePC" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 63
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(63): used implicit default value for signal "resetPC" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 63
+Info (12128): Elaborating entity "UC" for hierarchy "UC:UC" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 81
+Warning (10492): VHDL Process Statement warning at Uc.vhd(42): signal "inCondReg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 42
 Warning (10631): VHDL Process Statement warning at Uc.vhd(18): inferring latch(es) for signal or variable "Operation", which holds its previous value in one or more paths through the process File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
 Info (10041): Inferred latch for "Operation[0]" at Uc.vhd(18) File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
 Info (10041): Inferred latch for "Operation[1]" at Uc.vhd(18) File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
 Info (10041): Inferred latch for "Operation[2]" at Uc.vhd(18) File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
-Info (12128): Elaborating entity "BancoRegistradores" for hierarchy "BancoRegistradores:BR" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 81
-Info (12128): Elaborating entity "mux2" for hierarchy "mux2:MUXImediato" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 98
+Info (12128): Elaborating entity "BancoRegistradores" for hierarchy "BancoRegistradores:BR" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 97
+Info (12128): Elaborating entity "mux2" for hierarchy "mux2:MUXImediato" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 114
+Info (12128): Elaborating entity "ULA" for hierarchy "ULA:ULA1" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 140
+Info (12128): Elaborating entity "mux2" for hierarchy "mux2:MUXJump" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 156
+Info (12128): Elaborating entity "Somador" for hierarchy "Somador:SOMADOR1" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 169
+Info (12128): Elaborating entity "ProgramCounter" for hierarchy "ProgramCounter:PC1" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 181
+Info (12128): Elaborating entity "Registrador1b" for hierarchy "Registrador1b:JMPREG" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 195
+Info (12128): Elaborating entity "conv7Seg" for hierarchy "conv7Seg:teste7seg" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 261
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "BancoRegistradores:BR|registrador" is uninferred due to inappropriate RAM size File: /home/lucasv/intelFPGA_lite/17.1/Projects/BancoRegistradores.vhd Line: 36
+Warning (13012): Latch UC:UC|Operation[1] has unsafe behavior File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ROM[16] File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 27
+Warning (13012): Latch UC:UC|Operation[2] has unsafe behavior File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ROM[17] File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 27
+Warning (13012): Latch UC:UC|Operation[0] has unsafe behavior File: /home/lucasv/intelFPGA_lite/17.1/Projects/Uc.vhd Line: 18
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal ROM[15] File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 27
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "outDecoder[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
-    Warning (13410): Pin "outDecoder[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
-    Warning (13410): Pin "outDecoder[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
-    Warning (13410): Pin "outDecoder[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 16
-    Warning (13410): Pin "dataOut[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
-    Warning (13410): Pin "dataOut[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
-    Warning (13410): Pin "dataOut[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
-    Warning (13410): Pin "dataOut[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 17
-    Warning (13410): Pin "habilitaBotaoOut" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX1[6]" is stuck at VCC File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX2[6]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[4]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[5]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX6[6]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[4]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[5]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "HEX7[6]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 22
+    Warning (13410): Pin "ROMIndex[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 28
+    Warning (13410): Pin "ROMIndex[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 28
+    Warning (13410): Pin "ROMIndex[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 28
+    Warning (13410): Pin "dataOut[0]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 32
+    Warning (13410): Pin "dataOut[1]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 32
+    Warning (13410): Pin "dataOut[2]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 32
+    Warning (13410): Pin "dataOut[3]" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 32
+    Warning (13410): Pin "habilitaBotaoOut" is stuck at GND File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 35
+Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 23 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "clk" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "ROM[0]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[1]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[2]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[3]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[4]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[5]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[6]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[7]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[8]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[9]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[10]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[11]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[12]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[13]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[14]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[15]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[16]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "ROM[17]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 13
-    Warning (15610): No output dependent on input pin "baseT" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 18
-    Warning (15610): No output dependent on input pin "buttons[0]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 19
-    Warning (15610): No output dependent on input pin "buttons[1]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 19
-    Warning (15610): No output dependent on input pin "buttons[2]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 19
-Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 5 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "buttons[0]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 34
+    Warning (15610): No output dependent on input pin "buttons[1]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 34
+    Warning (15610): No output dependent on input pin "buttons[2]" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 34
+    Warning (15610): No output dependent on input pin "baseT" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 33
+    Warning (15610): No output dependent on input pin "clk" File: /home/lucasv/intelFPGA_lite/17.1/Projects/CPU.vhd Line: 25
+Info (21057): Implemented 137 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 23 input pins
-    Info (21059): Implemented 9 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 50 warnings
-    Info: Peak virtual memory: 966 megabytes
-    Info: Processing ended: Sat Oct  5 19:06:54 2019
+    Info (21059): Implemented 82 output pins
+    Info (21061): Implemented 32 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 77 warnings
+    Info: Peak virtual memory: 1013 megabytes
+    Info: Processing ended: Mon Oct  7 17:27:19 2019
     Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:20
+    Info: Total CPU time (on all processors): 00:00:21
 
 
