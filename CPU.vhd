@@ -14,7 +14,7 @@ entity cpu is
         larguraBarramentoEnderecos  : natural := 4;
 		  larguraBarramentoMemoria		: natural := 3;
         larguraBarramentoDados      : natural := 7;
-		  larguraDadosROM					: natural := 3
+		  qtdEnderecosRom					: natural := 7
     );
     port
     (
@@ -25,7 +25,7 @@ entity cpu is
         clk : IN  STD_LOGIC;
 		  -- Instrucao
 		  ROM : IN std_logic_vector(17 downto 0);
-		  ROMIndex : out std_logic_vector (larguraDadosROM -1 downto 0);
+		  ROMIndex : out std_logic_vector (qtdEnderecosRom -1 downto 0);
 		  
 		  
         outDecoder : out std_logic_vector(17 downto 0);
@@ -43,7 +43,7 @@ architecture estrutural of cpu is
 --	 signal entradaA_MUX, entradaA_MUX, saida_MUX, entrada_somador, saida_somador : STD_LOGIC_VECTOR(larguraBarramentoDados-1 DOWNTO 0);
 --    signal seletor_MUX : STD_LOGIC;
 
-	-- Imediado
+	-- Imediato
 	signal imediato : std_logic_vector(6 downto 0);
 	-- Registradores
 	signal enderecoA, enderecoB, enderecoC : std_logic_vector(3 downto 0);
@@ -60,8 +60,8 @@ architecture estrutural of cpu is
 	signal opCode, operacaoULA : std_logic_vector(2 DOWNTO 0);
 	
 	-- Signals gerais
-	signal CondRegOut, enablePC, resetPC, doJump : std_logic;
-	signal saidaAcumulador,entradaAcumulador ,entradaPC, saidaPC : std_logic_vector(2 downto 0);
+	signal doJumpEqual, doJumpLess, saidaRegEqual,saidaRegLess, enablePC, resetPC : std_logic;
+	signal saidaAcumulador,entradaAcumulador ,entradaPC, saidaPC : std_logic_vector(qtdEnderecosRom -1 downto 0);
 	
 	
 	
@@ -82,13 +82,13 @@ begin
     port map
     (
         opCode						=> opCode,
-		  inCondReg					=> CondRegOut,
+		  RegEqual					=> saidaRegEqual,
+		  RegLess					=> saidaRegLess,
 		  selMuxJump				=> selMuxJump,
 		  selInUla					=> selInUla,
 		  selDataIn					=> selDataIn,
 		  selBotoes					=> selBotoes,
-		  enableWrite				=> enableWrite,
-		  resetCondReg				=> resetCondReg,
+		  enableWrite				=> enableWriteBanco,
 		  Operation					=> operacaoULA
 		  
     );
@@ -147,7 +147,8 @@ begin
 		  inB					=> saidaBbanco,
 		  outO				=> saidaula,
 		  sel					=> operacaoULA,
-		  doJump				=> doJump
+		  doJumpEqual				=> doJumpEqual,
+		  doJumpLess				=> doJumpLess
 		  
 
     );
@@ -155,12 +156,12 @@ begin
 	 -- Instanciação de MUX Acumulador(0) cm Jump(1)
 	 MUXJump : entity work.mux2 
     generic map (
-        size    => larguraDadosROM
+        size    => qtdEnderecosRom
     )
     port map
     (
         a1            => saidaAcumulador, -- Base de tempo eh 1 ou 0, mas a entrada tem q ser 7 bits
-        a2            => ROM(2 downto 0),
+        a2            => imediato,
         sel             => selMuxJump,
         b               => entradaPC
     );
@@ -168,38 +169,49 @@ begin
 	 -- Instanciação de Somador com Constante
     SOMADOR1 : entity work.Somador 
     generic map (
-        larguraDados    => larguraDadosROM -- 3 bits pra ROM, 
+        larguraDados    => qtdEnderecosRom -- 3 bits pra ROM, 
     )
     port map
     (
         entradaA         => saidaPC,
-		  entradaB			 => "001", -- std_logic_vector(largura -1 downto 1) & 1;
+		  entradaB			 => "0000001", -- std_logic_vector(largura -1 downto 1) & 1;
         saida           => saidaAcumulador
     );
 	 
 	 -- Instanciação de Somador com Constante
     PC1 : entity work.ProgramCounter 
     generic map (
-        larguraDados    => larguraDadosROM -- 3 bits pra ROM, 
+        larguraDados    => qtdEnderecosRom -- 3 bits pra ROM, 
     )
     port map
     (
 		  DIN  => entradaPC,
         DOUT => saidaPC,
-        ENABLE => enablePC,
+        ENABLE => '1',
         CLK => clk,
-		  RST => resetPC
+		  RST => '0'
     );
 	 
-	 -- Reg de COndicao de Jump
-    JMPREG : entity work.Registrador1b 
+	 -- Reg de COndicao de Jump Equal
+    REGEQUAL : entity work.Registrador1b 
     port map
     (
-		  DIN  => doJump,
-        DOUT => CondRegOut,
-        ENABLE => enablePC,
+		  DIN  => doJumpEqual,
+        DOUT => saidaRegEqual,
+        ENABLE => '1',--doJump,
         CLK => clk,
-		  RST => resetCondReg
+		  RST => '0' --resetCondReg
+    );
+	 
+	 -- Reg de COndicao de Jump Less
+    REGLESS : entity work.Registrador1b 
+    port map
+    (
+		  DIN  => doJumpLess,
+        DOUT => saidaRegLess,
+        ENABLE => '1',--doJump,
+        CLK => clk,
+		  RST => '0' --resetCondReg
     );
 	 
 	 

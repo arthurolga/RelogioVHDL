@@ -8,10 +8,11 @@ entity ULA is
         larguraDados : natural := 7
     );
 	port (
-		inA,inB	:	in std_logic_vector(larguraDados-1 downto 0);
-		outO		:	out std_logic_vector(larguraDados-1 downto 0);
-		sel		:	in std_logic_vector(2 downto 0);
-		doJump	: 	out std_logic -- para jump condicional
+		inA,inB		:	in std_logic_vector(larguraDados-1 downto 0);
+		outO			:	out std_logic_vector(larguraDados-1 downto 0);
+		sel			:	in std_logic_vector(2 downto 0);
+		doJumpEqual	: 	out std_logic; -- para jump condicional
+		doJumpLess	:	out std_logic
 	);
 
 end ULA;
@@ -35,10 +36,12 @@ begin
 	Z				when (sel = "101") else
 	"0000000";
 	
-	doJump<=
-	bIsZero		when (sel = "011") else -- JE
-	bIsLessA		when (sel = "100") else	-- JL 
-	'0'; 
+	doJumpEqual <= bIsZero when (sel = "010") else
+	'0' when (sel /= "011") AND (sel /= "100");
+	
+	doJumpLess <= bIsLessA when (sel = "010") else
+	'0' when (sel /= "011") AND (sel /= "100");
+	
 
 end architecture;
 

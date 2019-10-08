@@ -7,7 +7,7 @@ entity ROM is
 
     generic
     (
-        dataWidth : natural := 8;
+        dataWidth : natural := 18;
         addrWidth : natural := 8
     );
 
