@@ -1,17 +1,17 @@
 
 Commands={"ADD":{"Value":"000","Type":"Operator"},
   "MOV":{"Value":"001","Type":"Move"},
-    "Nisbe":{"Value":"010","Type":"Operator"},
+    "CMP":{"Value":"010","Type":"CMP"},
     "JE":{"Value":"011","Type":"JE"},
     "JL":{"Value":"100","Type":"JL"},
-    "EQL":{"Value":"101","Type":"Operator"},
+    "LOAD":{"Value":"101","Type":"LOAD"},
     "JMP":{"Value":"110","Type":"Jump"},
     "STR":{"Value":"111","Type":"Store"}
 }
 
 labels={}
 
-linha=0
+linha=-1
 
 def to_bin(N,fill):
     N=int(N)
@@ -116,38 +116,95 @@ def Store(Line,cleanRead):
 
 def JE(Line,cleanRead):
     global linha
+    # JE $3
     imediato=Line[get_Imediato(Line[1:])[0]][1:]
-    checkNumberSize(Line[1][1:],16)
-    checkNumberSize(imediato,128)
-    reservado=to_bin(imediato,7)[4:]
+    
     Upcode=Commands[Line[0]]["Value"]
-    RegA = to_bin(imediato,7)[:4]
-    RegB1 = to_bin(Line[1][1:],4)
-    C1=str(linha)+" : "+Upcode+"0000"+RegB1+"0000"+"000"+";"+"\n"
-    linha=linha+1
-    C2=str(linha)+" : "+"010"+RegA+"0000"+"0000"+reservado+";"+"\n"
-    return C1+C2
+    
+    
+    bin_i = to_bin(imediato,7)
+    bin_regA = bin_i[:4]
+    bin_rese = bin_i[4:]
+    
+
+    C1=str(linha)+" : "+Upcode+bin_regA+"0000"+"0000"+bin_rese+";"+"\n"
+    return C1
 
 def JL(Line,cleanRead):
     global linha
-    checkNumberSize(Line[1][1:],16)
-    checkNumberSize(Line[2][1:],128)
-    checkNumberSize(Line[3][1:],128)
+    # JL $3
+    imediato=Line[get_Imediato(Line[1:])[0]][1:]
+    
     Upcode=Commands[Line[0]]["Value"]
-    RegA = to_bin(Line[2][1:],7)[:4]
-    RegB1 = to_bin(Line[1][1:],4)
-    reservado=to_bin(Line[2][1:],7)[4:]
-    RegA2 = to_bin(Line[3][1:],7)[:4]
-    reservado2=to_bin(Line[3][1:],7)[4:]
-    C1=str(linha)+" : "+Upcode+""+RegA+""+RegB1+"0000"+reservado+";"+"\n"
-    linha=linha+1
-    C2=str(linha)+" : "+"010"+RegA2+"0000"+"0000"+reservado2+";"+"\n"
-    return C1+C2
+    
+    
+    bin_i = to_bin(imediato,7)
+    bin_regA = bin_i[:4]
+    bin_rese = bin_i[4:]
+    
+
+    C1=str(linha)+" : "+Upcode+bin_regA+"0000"+"0000"+bin_rese+";"+"\n"
+    return C1
+
+
+def LOAD(Line,cleanRead):
+    global linha
+    # JE $3
+    imediato=Line[get_Imediato(Line[1:])[0]][1:]
+    endereco=Line[get_Imediato(Line[1:])[1]][1:]
+    Upcode=Commands[Line[0]]["Value"]
+    
+    print(imediato,endereco)
+    
+    bin_i = to_bin(imediato,7)
+    RegC = to_bin(endereco,4)
+    bin_regA = bin_i[:4]
+    bin_rese = bin_i[4:]
+    print(bin_regA+bin_rese)
+
+    
+
+    C1=str(linha)+" : "+Upcode+bin_regA+"0000"+RegC+bin_rese+";"+"\n"
+    return C1
+
+def CMP(Line,cleanRead):
+    global linha
+    # CMP &4 $2
+    imediato=Line[get_Imediato(Line[1:])[0]][1:]
+    endereco = Line[get_Imediato(Line[1:])[1]][1:]
+    Upcode=Commands[Line[0]]["Value"]
+
+    bin_i = to_bin(imediato,7)
+    bin_add = to_bin(endereco,4)
+    bin_regA = bin_i[:4]
+    bin_rese = bin_i[4:]
+
+    C1=str(linha)+" : "+Upcode+bin_regA+bin_add+"0000"+bin_rese+";"+"\n"
+    
+    return C1
+
+
+
+# def JL(Line,cleanRead):
+#     global linha
+#     checkNumberSize(Line[1][1:],16)
+#     checkNumberSize(Line[2][1:],128)
+#     checkNumberSize(Line[3][1:],128)
+#     Upcode=Commands[Line[0]]["Value"]
+#     RegA = to_bin(Line[2][1:],7)[:4]
+#     RegB1 = to_bin(Line[1][1:],4)
+#     reservado=to_bin(Line[2][1:],7)[4:]
+#     RegA2 = to_bin(Line[3][1:],7)[:4]
+#     reservado2=to_bin(Line[3][1:],7)[4:]
+#     C1=str(linha)+" : "+Upcode+""+RegA+""+RegB1+"0000"+reservado+";"+"\n"
+#     linha=linha+1
+#     C2=str(linha)+" : "+"010"+RegA2+"0000"+"0000"+reservado2+";"+"\n"
+#     return C1+C2
 
 def readCode(filename,cleanRead):
     global linha
     contadorLinhas = 0
-    g = open("MachineLanguage.txt","w+")
+    g = open("MachineLanguageFinal.txt","w+")
     f0 = open(filename, "r")
     f1 = open(filename, "r")
     
@@ -177,13 +234,19 @@ def readCode(filename,cleanRead):
         elif Commands[Line[0]]["Type"] == "JE":
              g.write(JE(Line,cleanRead))
 
+        elif Commands[Line[0]]["Type"] == "CMP":
+             g.write(CMP(Line,cleanRead))
+
         elif Commands[Line[0]]["Type"] == "Store":
              g.write(Store(Line,cleanRead))
 
         elif Commands[Line[0]]["Type"] == "JL":
              g.write(JL(Line,cleanRead))
+
+        elif Commands[Line[0]]["Type"] == "LOAD":
+             g.write(LOAD(Line,cleanRead))
         
 
         
        
-readCode("assembly.txt",False)
+readCode("codigo.txt",False)
